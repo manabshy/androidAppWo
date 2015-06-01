@@ -1,5 +1,5 @@
 # androidAppWo
-This is an Android Web App constructed using HTML5,CSS3,AngularJS,JavaScript and packages using PhoneGap and Cordova for android.
+Android Web App constructed using HTML5,CSS3,AngularJS,JavaScript and packaged using PhoneGap and Cordova for android.
 
 For more information - please check the link below -
 
