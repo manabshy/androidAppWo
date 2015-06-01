@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+          <link href="css/formf1.css" rel="stylesheet"/>
+          <link href="css/uutheme.css" rel="stylesheet"/>
+          <link href="css/bootstrap.min.css" rel="stylesheet"/>
+          <link href="css/jquery-ui.min.css" rel="stylesheet"/>
+
+          <script src="js/library/jquery-1.11.1.min.js"></script>  
+          <script src="js/library/bootstrap.min.js"></script>
+          <script src="js/library/jquery-ui.min.js"></script>
+          <script src="js/library/jquery.validate.js"></script>
+          <script src="js/library/angular-1.2.0/angular.min.js"></script>
+          <script src="js/main.js"></script>    
+          <script src="js/controller/formcontroller.js"></script>    
+
+    </head>
+
+
+<body ng-app="formApp" ng-controller="formController">
+  
+  <div class="container global-border uuBackground">
+    <div class="row div-bottom">
+      <div class="col-sm-6 form-name text-left">
+        <h2>Work Order Request</h2>
+        <span class="header">For use by Customers</span> <br>
+        <span class="headerDescription">Request for a fix</span>  
+      </div>
+      <div class="col-sm-6 form-name text-left">
+        <img src="img/UUB_Logo_RGB_1-01.png" class="img-responsive uuLogo" alt="UU Logo"/>
+      </div>
+    </div>    
+    <form novalidate name="woForm" action="/workorder"  role="form" id="woForm" ng-submit="submitForm(woForm.$valid)">
+     
+      <div class="row">
+        <div class="col-sm-6 ">
+          <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Work Order Details</legend>
+            <div class="form-group">
+                <label for="vendorId">Vendor:</label>    
+                <select id="vendorId" name="vendorId" class="form-control">
+                  <option>Please select a vendor</option>
+                  <option>vendor1</option>
+                  <option>vendor2</option>
+                  <option>vendor3</option>
+                  <option>vendor4</option>
+                  <option>vendor5</option>
+
+                </select>            
+            </div>   
+
+            <div class="form-group">
+                <label for="WoNumber">Work Order NO:</label>  
+                <input type="text" class="form-control" id="WoNumber" name="WoNumber" placeholder="Work Order Number" ng-model="formData.WoNumber" value="" readonly/>          
+    
+            </div>    
+            <div class="form-group" ng-class="{ 'has-error' : woForm.contactName.$invalid && !woForm.contactName.$pristine}">
+                <label for="contactName">Name:</label>  
+                <input type="text" class="form-control" id="contactName" name="contactName" placeholder="Contact Name" ng-model="formData.contactName" required />   
+                <p ng-show="woForm.contactName.$invalid && !woForm.contactName.$pristine" class="help-block">Your Contact Name is required.</p>       
+
+            </div>  
+            <div class="form-group" ng-class="{ 'has-error' : woForm.contactNumber.$invalid && !woForm.contactNumber.$pristine }">
+                <label for="ContactNumber">Contact number:</label>  
+                <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Contact Number" ng-model="formData.contactNumber" required />                      
+                <p ng-show="woForm.contactNumber.$invalid && !woForm.contactNumber.$pristine" class="help-block">Your Contact Number is required.</p>       
+
+            </div>    
+            <div class="form-group" ng-class="{ 'has-error' : woForm.email.$invalid && !woForm.email.$pristine }">
+                <label for="email">Email:</label>  
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="formData.email"/>   
+                <p ng-show="woForm.email.$invalid && !woForm.email.$pristine" class="help-block">Enter a valid email.</p>
+
+            </div>   
+            <div class="form-group">
+                <label for="retailer">Cause:</label>    
+                <input type="text"  class="form-control" id="retailer" placeholder="Cause" value="">                      
+            </div>   
+            <div class="form-group">
+                <label for="retailerId">Impact:</label>  
+                <input type="text" class="form-control" id="retailerId" placeholder="Impact"  value="">          
+            </div>  
+
+            <div class="form-group" ng-class="{ 'has-error' : woForm.operation.$invalid && !woForm.operation.$pristine }">
+                <label for="operation">Operation:</label>  
+                <input type="text" class="form-control" id="operation" name="operation" placeholder="Operation" ng-model="formData.operation"/>   
+                <p ng-show="woForm.operation.$invalid && !woForm.operation.$pristine" class="help-block">Operation is required.</p>       
+            </div>    
+
+          </fieldset>
+        </div>
+        <div class="col-sm-6 ">
+          <fieldset class="scheduler-border">
+            <legend class="scheduler-border"> Contact Details </legend>
+            <div class="form-group">
+                <label for="bannerName">Customer Banner Name:</label>    
+                <input type="text" class="form-control" id="bannerName" placeholder="Customer Name" value="Manchester City Council" readonly>                      
+            </div>   
+
+            <div class="form-group">
+                <label for="uprn">Work Order Number:</label>  
+                <input type="text" class="form-control" id="workorderno" placeholder="UPRN" value="77125704" readonly>          
+            </div>  
+            <div class="form-group">
+                <label for="postcodePremises">City:</label>    
+                <input type="text" class="form-control" id="city" placeholder="City" value="">                      
+            </div>
+            <div class="form-group">
+                <label for="postcodePremises">Postcode:</label>    
+                <input type="text" class="form-control" id="postcodePremises" placeholder="Post Code" value="" >                      
+            </div>   
+            <hr>
+            <div class="form-group">
+                  <label for="date">Date (dd/mm/yyyy):</label>  
+                  <input type="text" class="form-control" id="date" name="signdate" placeholder="Date (dd/mm/yyyy)"
+                  ng-model="formData.signdate">
+              </div>             
+              <div class="form-group">
+                  <span id="firstNameInputValidation"></span><br>
+                  <label for="fullName">Customer name:</label>  
+                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
+                  ng-model="formData.firstName">   
+                  <p ng-show="woForm.firstName.$invalid && !woForm.firstName.$pristine" class="help-block">Your first name is required.</p>       
+              </div>             
+          </fieldset>
+        </div>
+      </div>  
+
+      <div class="row">
+        <div class="col-sm-12 text-center btnblk">
+          <button type="submit" class="btn btn-success sendwoFormData" ng-disabled="woForm.$invalid" ng-click="createWordOrder(woForm)">Submit</button>  
+          <input type="button" class="btn btn-info" ng-click="reset(woForm)" value="Reset"></button>
+          <div id="dialog" title="Success">
+            <p>Your form is submitted successfully.</p>
+          </div>              
+      </div>    
+    </form>
+    <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
+    <pre>
+        {{ formData }}
+    </pre>
+
+  </div>  
+       
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+
+</body>
+
+</html>
