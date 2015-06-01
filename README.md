@@ -10,7 +10,16 @@ For more Information -
 http://docs.phonegap.com/en/edge/guide_platforms_android_index.md.html#Android%20Platform%20Guide
 
 
-Some useful commands below
+Some useful commands below:
+
+How to run this within Android Studio
+1. Open Android Studio - Click on File - New - Project - Project From Version Control - GitHub
+2. Enter the GitHub details - For Git Repository URL - https://github.com/manabshy/androidAppWo.git
+3. Click on Clone
+4. Configur the project - Please notice for a message  - "Android project detected"
+5. Open the Terminal Window in Android Studio or a separate one
+6. Run the below commands to build the app and launch it in emulator
+
 
 cordova phonegap
 
